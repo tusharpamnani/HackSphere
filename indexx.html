@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content="Astro v3.5.5">
+    <title>
+        HackSphere
+    </title>
+    <script src="https://kit.fontawesome.com/0b92670209.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        @import"https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap";
+        @import"https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap";
+        @import"https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap";
+        @import"https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&display=swap";
+        @import"https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap";
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth
+        }
+
+        body {
+            background: black;
+            font-family: Poppins, sans-serif;
+            overflow-x: hidden;
+            cursor: none
+        }
+
+        .text-gradient-blue-purple {
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(90deg, #7661f1, #e747af)
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 24px;
+            color: #fff
+        }
+
+        .main-scrollbar::-webkit-scrollbar {
+            width: 0
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 5px
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #0e0e0e;
+            border-radius: 5px
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background-color: #0000;
+            border-radius: 3px
+        }
+    </style>
+    <script type="module">const s = document.getElementById("cursor"); document.body.onmouseenter = () => { s?.classList.remove("opacity-0") }; document.body.onmouseleave = () => { s?.classList.add("opacity-0") }; const y = (e, t, n) => { if (!s) return; const o = e.pageX - s.offsetWidth / 2, c = e.pageY - s.offsetHeight / 2, v = { transform: `translate(${o}px, ${c}px) scale(${n ? 7 : t ? 3 : 1})` }; s.animate(v, { duration: 800, fill: "forwards" }) }; window.onmousemove = e => { const t = e.target instanceof HTMLElement && e.target.closest(".interactable") !== null || !1, n = e.target instanceof HTMLElement && e.target.closest(".hero-title") !== null || !1, o = e.target instanceof HTMLImageElement, c = e.target instanceof HTMLImageElement && e.target.id === "tark-logo"; c && console.log("over tark logo"), o && !c ? (s?.classList.remove("mix-blend-difference"), s?.classList.add("w-4")) : (s?.classList.add("mix-blend-difference"), s?.classList.remove("w-4")), y(e, t, n) }; const i = document.getElementById("scrollToTop"); function g() { i && (window.scrollY >= window.innerHeight - 250 ? (i.classList.remove("pointer-events-none"), i.classList.remove("opacity-0"), i.classList.add("opacity-100")) : (i.classList.remove("opacity-100"), i.classList.add("opacity-0"), i.classList.add("pointer-events-none"))) } window.addEventListener("scroll", g); i?.addEventListener("click", () => { window.scrollTo({ top: 0, behavior: "smooth" }) }); var w = !0, f = "Invariant failed"; function d(e, t) { if (!e) { if (w) throw new Error(f); var n = typeof t == "function" ? t() : t, o = n ? "".concat(f, ": ").concat(n) : f; throw new Error(o) } } const x = 800, p = .1; class L { x; y; z; xPrev; yPrev; constructor(t = 0, n = 0, o = 0) { this.x = t, this.y = n, this.z = o, this.xPrev = t, this.yPrev = n } update(t, n, o) { this.xPrev = this.x, this.yPrev = this.y, this.z += o * .0675, this.x += this.x * (o * .0225) * this.z, this.y += this.y * (o * .0225) * this.z, (this.x > t / 2 || this.x < -t / 2 || this.y > n / 2 || this.y < -n / 2) && (this.x = Math.random() * t - t / 2, this.y = Math.random() * n - n / 2, this.xPrev = this.x, this.yPrev = this.y, this.z = 0) } draw(t) { t.lineWidth = this.z, t.beginPath(), t.moveTo(this.x, this.y), t.lineTo(this.xPrev, this.yPrev), t.stroke() } } const m = Array.from({ length: x }, () => new L(0, 0, 0)); let l = 0; const a = document.querySelector("#starfield-canvas"); d(a, "canvas should not be null"); const r = a.getContext("2d"), h = document.querySelector("#starfield"); d(h, "container should not be null"); const b = new ResizeObserver(P); b.observe(h); function P() { d(r, "canvas context should not be null"), l > 0 && cancelAnimationFrame(l); const { clientWidth: e, clientHeight: t } = h, n = window.devicePixelRatio || 1; a.width = e * n, a.height = t * n, a.style.width = `${e}px`, a.style.height = `${t}px`, r.scale(n, n); for (const o of m) o.x = Math.random() * e - e / 2, o.y = Math.random() * t - t / 2, o.z = 0; r.translate(e / 2, t / 2), r.fillStyle = "rgba(0, 0, 0, 0.4)", r.strokeStyle = "white", l = requestAnimationFrame(u) } function u() { d(r, "canvas context should not be null"); const { clientWidth: e, clientHeight: t } = h; for (const n of m) n.update(e, t, p), n.draw(r); r.fillRect(-e / 2, -t / 2, e, t), l = requestAnimationFrame(u) }
+    </script>
+</head>
+
+<body class="main-scrollbar">
+    <div id="cursor"
+        class="opacity-0 hidden md:block pointer-events-none absolute z-50 aspect-square w-16 bg-white rounded-full mix-blend-difference transition-all duration-700 ease-in-out">
+    </div> <button id="scrollToTop"
+        class="pointer-events-none opacity-0 fixed bottom-2 md:bottom-6 lg:bottom-8 right-2 md:right-6 lg:right-8 aspect-square rounded-md p-2 w-12 z-50 bg-black bg-opacity-40 hover:bg-opacity-60 text-white tranisiton-all duration-700 ease-in-out">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-full h-full">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"></path>
+        </svg> </button>
+    <div class="min-h-[100dvh] relative flex flex-col gap-4 items-center justify-center p-4">
+        <div id="starfield" class="absolute inset-0 -z-50"> <canvas id="starfield-canvas"></canvas> </div>
+        <h2 class="text-3xl md:text-5xl font-bold text-white"> <span class="font-hindi text-4xl md:text-6xl">The CodeBreakers Club</span>
+            presents
+        </h2>
+        <div class="hero-title flex flex-col gap-8">
+            <h1 class="text-6xl md:text-7xl font-black font-hero text-gradient-blue-purple text-center">
+                Hack Sphere
+            </h1>
+            <h3 class="text-xl md:text-3xl lg:text-5xl font-black font-hero text-gradient-blue-purple text-center">
+                16 Jan
+            </h3>
+        </div> <a href="/problem" target="_blank"
+            class="interactable font-arcade text-white text-center text-xl md:text-3xl mt-8 md:mt-12 lg:mt-16 transition-all duration-700 ease-in-out">PROBLEM<br>STATEMENTS</a>
+        <div
+            class="absolute bottom-0 md:bottom-4 lg:bottom-8 w-full h-20 md:h-24 lg:h-28 flex align-items-center p-4 md:px-12 lg:px-24">
+            <a href="https://instagram.com/" target="_blank"
+                class="interactable aspect-square h-full rounded-full"> <img id="tark-logo" src="code breakers logo.png"
+                    alt="Tark" class="w-full h-full object-cover rounded-full"> </a>
+            <div class="h-full flex flex-grow justify-end items-center gap-4 md:gap-8 lg:gap-12 text-md md:text-xl"> <a
+                    href="#about" class="interactable text-white hover:underline">Know More</a> <a href="#team"
+                    class="interactable text-white hover:underline">Our Team</a> </div>
+        </div>
+    </div>
+    <div id="about"
+        class="w-full min-h-screen text-white bg-black flex flex-col items-center md:flex-row gap-4 p-4 py-12 md:p-24 lg:p-32">
+        <div class="w-full md:w-1/5 lg:w-1/3 flex items-center md:justify-center px-4">
+            <h1
+                class="interactable text-3xl md:text-5xl lg:text-7xl font-hero font-bold text-purple-500 md:-rotate-90 md:-translate-y-1/2 whitespace-nowrap lg:whitespace-normal">
+                About The Event
+            </h1>
+        </div>
+        <div class="w-full md:w-4/5 lg:w-1/2 flex flex-col gap-8 p-4">
+            <p class="text-lg md:text-xl lg:text-2xl">
+                Welcome to <span class="interactable text-purple-500 font-bold">HackSphere</span>, the premier event
+                hosted by The CodeBreakers Club, RCOEM. As pioneers in merging technical
+                expertise with the art of Development, we present a groundbreaking
+                8-hour Developer Hackathon . Our event serves as a platform for budding engineers
+                to showcase their problem-solving abilities while honing crucial
+                skills essential for industry success. Join us for an
+                unforgettable 8 hour journey where innovation, technical acumen,
+                and persuasive articulation converge to shape the future of our
+                aspiring professionals.
+            </p> <a href="/register" target="_blank"
+                class="interactable w-fit bg-purple-500 hover:bg-purple-600 hover:scale-110 text-white text-xl md:text-3xl text-center md:text-left font-bold p-2 px-6 rounded transition-all duration-700 ease-in-out">
+                Register Now
+            </a>
+        </div>
+    </div>
+    <div id="team"
+        class="w-full min-h-screen bg-topography bg-cover flex flex-col items-center justify-center gap-2 md:gap-4 p-8">
+        <h1 class="text-3xl md:text-5xl font-hero font-bold text-white mt-8">
+            Core Team
+        </h1>
+        <div class="w-max grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center gap-4 md:gap-6 p-8">
+            <div
+                class="relative w-64 h-[26rem] bg-white bg-opacity-20 backdrop-blur-md shadow-lg shadow-black flex flex-col rounded-xl">
+                <img class="w-full h-60 rounded-t-xl object-cover" src="https://thecodebreakers.netlify.app/_ipx/w_256,q_75/%2Fprofiles%2FCore%2FHarsh.jpg?url=%2Fprofiles%2FCore%2FHarsh.jpg&w=256&q=75"
+                    alt="Kevin Karia - Head of Tark">
+                <div class="rounded-b-xl text-white flex flex-col gap-2 p-4">
+                    <h1 class="text-2xl font-bold">Harsh Diwase</h1>
+                    <p class="text-md">President</p>
+                    <div class="absolute bottom-4 flex gap-4 text-3xl"> <a
+                            href="https://www.linkedin.com/in/harsh-diwase-54a964226/" target="_blank"> <i
+                                class="fa-brands fa-linkedin"></i> </a> <a href="https://github.com"
+                            target="_blank"> <i class="fa-brands fa-github"></i> </a> <a
+                            href="https://instagram.com/harshdiwase?igshid=OGQ5ZDc2ODk2ZA==" target="_blank"> <i
+                                class="fa-brands fa-instagram"></i> </a> </div>
+                </div>
+            </div>
+            <div
+                class="relative w-64 h-[26rem] bg-white bg-opacity-20 backdrop-blur-md shadow-lg shadow-black flex flex-col rounded-xl">
+                <img class="w-full h-60 rounded-t-xl object-cover" src="https://thecodebreakers.netlify.app/_ipx/w_256,q_75/%2Fprofiles%2FCore%2FMuskan.jpg?url=%2Fprofiles%2FCore%2FMuskan.jpg&w=256&q=75"
+                    alt="Nnisarg Gada - Associate Head - Tech">
+                <div class="rounded-b-xl text-white flex flex-col gap-2 p-4">
+                    <h1 class="text-2xl font-bold">Muskan Jaiswal</h1>
+                    <p class="text-md">Vice President</p>
+                    <div class="absolute bottom-4 flex gap-4 text-3xl"> <a
+                            href="https://www.linkedin.com/in/muskan-jaiswal-80317122b" target="_blank"> <i
+                                class="fa-brands fa-linkedin"></i> </a> <a href="https://github.com/nnisarggada"
+                            target="_blank"> <i class="fa-brands fa-github"></i> </a> <a
+                            href="https://instagram.com/muskanjaiswal_03?igshid=NGVhN2U2NjQ0Yg==" target="_blank"> <i
+                                class="fa-brands fa-instagram"></i> </a> 
+                                 </div>
+                </div>
+            </div>
+            <div
+                class="relative w-64 h-[26rem] bg-white bg-opacity-20 backdrop-blur-md shadow-lg shadow-black flex flex-col rounded-xl">
+                <img class="w-full h-60 rounded-t-xl object-cover"
+                    src="https://thecodebreakers.netlify.app/_ipx/w_384,q_75/%2Fprofiles%2FCore%2FNaman.jpg?url=%2Fprofiles%2FCore%2FNaman.jpg&w=384&q=75"
+                    alt="Niraj Lalani - Associate Head - Digital Creatives">
+                <div class="rounded-b-xl text-white flex flex-col gap-2 p-4">
+                    <h1 class="text-2xl font-bold">Naman Sarda</h1>
+                    <p class="text-md">Technical Lead</p>
+                    <div class="absolute bottom-4 flex gap-4 text-3xl"> <a
+                            href="https://www.linkedin.com/in/naman-sarda-10a17622b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"> <i
+                                class="fa-brands fa-linkedin"></i> </a> <a
+                            href="https://instagram.com/naman_sarda07?igshid=OGQ5ZDc2ODk2ZA==" target="_blank"> <i
+                                class="fa-brands fa-instagram"></i> </a> <a href="http://aviant.in/" target="_blank"> <i
+                                class="fa-solid fa-link"></i> </a> </div>
+                </div>
+            </div>
+            <div
+                class="relative w-64 h-[26rem] bg-white bg-opacity-20 backdrop-blur-md shadow-lg shadow-black flex flex-col rounded-xl">
+                <img class="w-full h-60 rounded-t-xl object-cover" src="https://thecodebreakers.netlify.app/_ipx/w_384,q_75/%2Fprofiles%2FCore%2FKunal.jpg?url=%2Fprofiles%2FCore%2FKunal.jpg&w=384&q=75"
+                    alt="Nisarg Khodke - Associate Head - Admin and Logistics">
+                <div class="rounded-b-xl text-white flex flex-col gap-2 p-4">
+                    <h1 class="text-2xl font-bold">Kunal Dewangan</h1>
+                    <p class="text-md">Events Lead</p>
+                    <div class="absolute bottom-4 flex gap-4 text-3xl"> <a
+                            href="https://www.linkedin.com/in/nisarg-khodke-391158250" target="_blank"> <i
+                                class="fa-brands fa-linkedin"></i> </a> <a href="https://github.com/nisarg2061"
+                            target="_blank"> <i class="fa-brands fa-github"></i> </a> <a
+                            href="https://www.instagram.com/_u/nisarg_2061" target="_blank"> <i
+                                class="fa-brands fa-instagram"></i> </a> </div>
+                </div>
+            </div>
+            <div
+                class="relative w-64 h-[26rem] bg-white bg-opacity-20 backdrop-blur-md shadow-lg shadow-black flex flex-col rounded-xl">
+                <img class="w-full h-60 rounded-t-xl object-cover" src="https://thecodebreakers.netlify.app/_ipx/w_384,q_75/%2Fprofiles%2FCore%2FNupur.jpg?url=%2Fprofiles%2FCore%2FNupur.jpg&w=384&q=75"
+                    alt="Rouhin Gandhi - Associate Head - Research and Development">
+                <div class="rounded-b-xl text-white flex flex-col gap-2 p-4">
+                    <h1 class="text-2xl font-bold">Nupur Hada</h1>
+                    <p class="text-md">Graphics Lead</p>
+                    <div class="absolute bottom-4 flex gap-4 text-3xl"> <a href="https://www.linkedin.com/in/rouhin"
+                            target="_blank"> <i class="fa-brands fa-linkedin"></i> </a> <a
+                            href="https://github.com/rouhin12" target="_blank"> <i class="fa-brands fa-github"></i> </a>
+                        <a href="https://www.instagram.com/_u/rouhiiiin" target="_blank"> <i
+                                class="fa-brands fa-instagram"></i> </a> </div>
+                </div>
+            </div>
+            <div
+                class="relative w-64 h-[26rem] bg-white bg-opacity-20 backdrop-blur-md shadow-lg shadow-black flex flex-col rounded-xl">
+                <img class="w-full h-60 rounded-t-xl object-cover"
+                    src="https://thecodebreakers.netlify.app/_ipx/w_384,q_75/%2Fprofiles%2FCore%2FVidhi.jpg?url=%2Fprofiles%2FCore%2FVidhi.jpg&w=384&q=75"
+                    alt="Avni Sharma - Associate Head - Marketing">
+                <div class="rounded-b-xl text-white flex flex-col gap-2 p-4">
+                    <h1 class="text-2xl font-bold">Vidhi Rathi</h1>
+                    <p class="text-md">Social Media Lead</p>
+                    <div class="absolute bottom-4 flex gap-4 text-3xl"> </div>
+                </div>
+            </div>
+            <div
+                class="relative w-64 h-[26rem] bg-white bg-opacity-20 backdrop-blur-md shadow-lg shadow-black flex flex-col rounded-xl">
+                <img class="w-full h-60 rounded-t-xl object-cover" src="https://thecodebreakers.netlify.app/_ipx/w_384,q_75/%2Fprofiles%2FCore%2FRushabh1.jpg?url=%2Fprofiles%2FCore%2FRushabh1.jpg&w=384&q=75"
+                    alt="Sania Bagul - Associate Head - In-house Creatives">
+                <div class="rounded-b-xl text-white flex flex-col gap-2 p-4">
+                    <h1 class="text-2xl font-bold">Rushabh Singwi</h1>
+                    <p class="text-md">Publicity Lead</p>
+                    <div class="absolute bottom-4 flex gap-4 text-3xl"> <a
+                            href="https://www.instagram.com/_u/saniabagul" target="_blank"> <i
+                                class="fa-brands fa-instagram"></i> </a> </div>
+                </div>
+            </div>
+            <div
+                class="relative w-64 h-[26rem] bg-white bg-opacity-20 backdrop-blur-md shadow-lg shadow-black flex flex-col rounded-xl">
+                <img class="w-full h-60 rounded-t-xl object-cover" src="https://thecodebreakers.netlify.app/_ipx/w_384,q_75/%2Fprofiles%2FCore%2FMushan.jpeg?url=%2Fprofiles%2FCore%2FMushan.jpeg&w=384&q=75"
+                    alt="Vedika Sethi - Associate Head - Publicity">
+                <div class="rounded-b-xl text-white flex flex-col gap-2 p-4">
+                    <h1 class="text-2xl font-bold">Mushan Khan</h1>
+                    <p class="text-md">Content Lead</p>
+                    <div class="absolute bottom-4 flex gap-4 text-3xl"> <a
+                            href="https://www.linkedin.com/in/vedika-sethi-a842b7235" target="_blank"> <i
+                                class="fa-brands fa-linkedin"></i> </a> <a
+                            href="https://www.instagram.com/_u/vedikasethiii" target="_blank"> <i
+                                class="fa-brands fa-instagram"></i> </a> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer
+        class="w-full h-28 md:h-20 bg-neutral-800 text-white flex flex-col md:flex-row justify-between items-center p-4 md:p-8 md:px-24 lg:px-32">
+        <a class="italic" href="mailto:pamnanita@rknec.edu">Reach out to us</a>
+        <div class="w-2/3 text-xl flex justify-evenly md:justify-end md:gap-12"> <a href="https://discord.gg/DjzB44KtjE"
+                target="_blank"> <i class="fa-brands fa-discord"></i> </a> <a
+                href="https://www.linkedin.com/company/tark-mpstme/" target="_blank"> <i
+                    class="fa-brands fa-linkedin"></i> </a> <a href="https://www.instagram.com/_u/tark.mpstme"
+                target="_blank"> <i class="fa-brands fa-instagram"></i> </a> </div>
+    </footer>
+    <script data-cfasync="false" src="./index.js"></script>
+</body>
+
+</html>
